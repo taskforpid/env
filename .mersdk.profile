@@ -79,7 +79,7 @@ EOF
 }
 
 function build_hybrishal {
-  ubu-chroot -r $HABUILD_ROOT /bin/bash -c "echo Building hybris-hal && cd $ANDROID_ROOT && source build/envsetup.sh && breakfast $DEVICE && make -j8 hybris-hal"
+  ubu-chroot -r $HABUILD_ROOT /bin/bash -c "echo Building hybris-hal && cd $ANDROID_ROOT && source build/envsetup.sh && breakfast $DEVICE && export USE_CCACHE=1 && make -j8 hybris-hal"
 }
 
 #################################################################
@@ -350,8 +350,8 @@ function promote_packages {
 #
 #}
 
-function mer_man {
-  echo "Welcome to MerSDK"
+function help {
+  echo "Welcome to TBCC SDK"
   echo "Additional convenience functions defined here are:"
   echo "  1) setup_ubuntuchroot: set up ubuntu chroot for painless building of android"
   echo "  2) setup_repo: sets up repo tool in ubuntu chroot to fetch android/mer sources"
@@ -370,8 +370,8 @@ function mer_man {
   echo "  15) build_rootfs [releasename]: builds a sailfishos installer zip for $DEVICE"
   echo "  16) serve_repo : starts a http server on local host. (which you can easily add to your device as ssu ar http://<ipaddr>:9000)"
   echo "  17) update_sdk: Update the SDK target to the current stable version, if available."
-  echo "  18) mer_man: Show this help"
+  echo "  18) help: Show this help"
 }
 
 cd $ANDROID_ROOT
-mer_man
+echo "Type help"
