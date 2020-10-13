@@ -25,8 +25,10 @@ TARBALL=Jolla-latest-SailfishOS_Platform_SDK_Chroot-i486.tar.bz2
 curl -k -O -C - http://releases.sailfishos.org/sdk/installers/latest/$TARBALL
 
 SDK_ROOT=$PLATFORM_SDK_ROOT/sdks/sfossdk
+sudo mkdir -p $PLATFORM_SDK_ROOT/{targets,toolings}
 sudo rm -rf $SDK_ROOT
 mkdir -p $SDK_ROOT
+sudo ln -s $PLATFORM_SDK_ROOT/sdks/sfossdk/$PLATFORM_SDK_ROOT/sdks/ubuntu/ $PLATFORM_SDK_ROOT/sdks/ubuntu
 cd $SDK_ROOT
 sudo tar --numeric-owner -p -xjf $MER_TMPDIR/$TARBALL
 

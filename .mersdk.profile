@@ -46,7 +46,7 @@ function setup_repo {
 
 function fetch_sources {
   ubu-chroot -r $HABUILD_ROOT /bin/bash -c "echo Initializing repo && cd $ANDROID_ROOT && repo init -u git://github.com/mer-hybris/android.git -b $HYBRIS_BRANCH --depth 1"
-  ubu-chroot -r $HABUILD_ROOT /bin/bash -c "echo Syncing sources && cd $ANDROID_ROOT && repo sync -c -j`nproc` --fetch-submodules --no-clone-bundle --no-tags"
+  ubu-chroot -r $HABUILD_ROOT /bin/bash -c "echo Syncing sources && cd $ANDROID_ROOT && repo sync -c -j`nproc` --fetch-submodules --no-clone-bundle --no-tags && hybris-patches/apply-patches.sh --mb && git clone --recurse-submodules https://github.com/mer-hybris/libhybris $HYBRIS_MW_ROOT/libhybris"
 }
 
 function setup_scratchbox {
@@ -82,10 +82,7 @@ function build_hybrishal {
   ubu-chroot -r $HABUILD_ROOT /bin/bash -c "echo Building hybris-hal && cd $ANDROID_ROOT && source build/envsetup.sh && breakfast $DEVICE && make -j8 hybris-hal"
 }
 
-
-
-
-
+#################################################################
 function build_package {
   PKG_PATH=`readlink -e $1`
   shift
@@ -338,6 +335,20 @@ function promote_packages {
     osc -A https://api.merproject.org copypac $DEVEL_REPO ${PACKAGE//%/} $TESTING_REPO
   done
 }
+
+#function fix_1 {
+  # ADD line to env.mk
+#   echo "MINIMEDIA_AUDIOPOLICYSERVICE_ENABLE := 1" > external/droidmedia/env.mk && sed "s/Werror/Werror -Wno-unused-parameter/" -i frameworks/av/services/camera/libcameraservice/Android.mk
+#}
+#function fix_2 {
+#  # Fix error "You are not currently on any branch"
+#  cd $HYBRIS_MW_ROOT/libncicore
+#  git checkout -b newbranch && git checkout master && git merge newbranch && git branch -d newbranch
+#  cd $ANDROID_ROOT
+#}
+#function fix_3 {
+#
+#}
 
 function mer_man {
   echo "Welcome to MerSDK"
