@@ -33,7 +33,7 @@ else ln -s $SCRIPTPATH/.mersdkubu.profile ~/.mersdkubu.profile
 fi
 
 #Update ~/.hadk.env
-
+sed -i '1iexport RELEASE="3.3.0.16"' ~/.hadk.env
 source $ENV
 echo "Environment updated."
 
@@ -55,6 +55,8 @@ cd $SDK_ROOT
 sudo tar --numeric-owner -p -xjf $MER_TMPDIR/$TARBALL
 
 #Setup convenience bash aliases
+echo "export PATH=$HOME/bin:$PATH" >> ~/.bashrc
+echo "export ANDROID_ROOT=$MER_ROOT/android/droid" >> ~/.bashrc
 echo "export PLATFORM_SDK_ROOT=$PLATFORM_SDK_ROOT" >> ~/.bashrc
 echo "alias sfossdk=$SDK_ROOT/mer-sdk-chroot" >> ~/.bashrc
 
@@ -63,5 +65,6 @@ cd $HOME
 #sudo chroot $SDK_ROOT sudo zypper ref -f
 #sudo chroot $SDK_ROOT sudo zypper --non-interactive in bc pigz atruncate android-tools-hadk
 
-echo "SailfishOS Platform SDK setup complete. You can start Sailfish OS SDK by simply typing sfossdk on your bash shell. Good Luck!"
+
+echo "TBCC OS Platform SDK setup complete. You can start TBCC OS SDK by simply typing sfossdk on your bash shell. Good Luck!"
 exec bash
