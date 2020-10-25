@@ -35,7 +35,7 @@ pushd $ANDROID_ROOT/rpm/dhd
 curl https://github.com/sailfishos-oneplus5/droid-hal-device/commit/f95c839f7be994d2020ccf877adad118d04e1d9a.patch | patch -p1 -f
 popd
 ```
-fdp 
+fpd 
 ```
 git clone https://github.com/piggz/sailfish-fpd-community.git hybris/mw/sailfish-fpd-community
 source build/envsetup.sh
