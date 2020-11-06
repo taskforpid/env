@@ -66,5 +66,5 @@ cd $HOME
 #sudo chroot $SDK_ROOT sudo zypper --non-interactive in bc pigz atruncate android-tools-hadk
 
 
-echo "TBCC OS Platform SDK setup complete. You can start TBCC OS SDK by simply typing sfossdk on your bash shell. Good Luck!"
+echo "OS Platform SDK setup complete. You can start OS SDK by simply typing sfossdk on your bash shell. Good Luck!"
 exec bash
