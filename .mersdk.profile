@@ -1,7 +1,7 @@
 function hadk() { source $HOME/.hadk.env; echo "Env setup for $DEVICE"; }
 hadk
 
-PS1="TBCC SDK $PS1"
+PS1="SDK $PS1"
 
 if [ -d /etc/bash_completion.d ]; then
    for i in /etc/bash_completion.d/*;
